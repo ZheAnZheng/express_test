@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Title</title>
+  <link rel="stylesheet" href="style.css" />
+  
+</head>
+
+<body>
+    <header> 
+        
+            <a href="/" class="item home">回到首頁</a>
+        
+        <nav>
+            <ul>
+                <li>
+                    <a href="/about" class="item link ">About</a>
+                </li>
+                <li>
+                    <a href="/portfolio" class="item link">Portolio</a>
+                </li>
+                <li >
+                    <a href="/contact" class="item link">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    {{{body}}}
+    <script>
+       const links= document.querySelectorAll('.link');
+       links.forEach(link=>{
+           link.addEventListener('click',(e)=>{
+                
+            localStorage.setItem('current',e.target.innerText.toLowerCase())
+            
+           })
+       })
+       document.querySelector('.home').addEventListener('click',()=>{
+           localStorage.removeItem('current');
+       })
+       document.addEventListener("DOMContentLoaded",()=>{
+           localStorage.getItem('current') && links.forEach(link=>{
+               if(link.innerText.toLowerCase()===localStorage.getItem('current')){
+                   link.classList.add('active')
+               }
+           })
+       })
+
+        
+    </script>
+</body>
+
+</html>
